@@ -55,16 +55,94 @@ This repository follows the standard [dev container Feature](https://containers.
 
 ### Testing
 
-The feature includes automated tests that verify:
-1. Devbox installation
-2. Basic functionality
-3. Initialization behavior with and without `devbox.json`
+The feature includes automated tests that verify the functionality through different scenarios:
 
-To run the tests locally:
+#### Test Structure
 
-```bash
-devcontainer features test -f devbox .
+1. Basic Installation Test (`test.sh`):
+   - Verifies devbox is installed and available
+   - Checks that basic commands work (e.g., `devbox version`)
+
+2. Scenario Tests:
+   - `devbox_without_init.sh`: Tests feature with `initRepo: false`
+   - `devbox_with_init.sh`: Tests feature with `initRepo: true`
+   - Both scenarios use Ubuntu-based container image
+
+3. Test Configuration:
+   - Sample `devbox.json` in `test/devbox/` with basic packages:
+     ```json
+     {
+         "packages": [
+             "hello",
+             "cowsay"
+         ]
+     }
+     ```
+
+#### Running Tests Locally
+
+1. Install prerequisites:
+   ```bash
+   # Install the devcontainer CLI
+   npm install -g @devcontainers/cli
+   ```
+
+2. Run the tests:
+   ```bash
+   # Basic installation test
+   devcontainer features test -f devbox --skip-scenarios .
+
+   # Full test suite
+   devcontainer features test -f devbox .
+   ```
+
+3. Test specific scenarios:
+   ```bash
+   # Test with initialization enabled
+   devcontainer features test -f devbox -i devbox_with_init .
+
+   # Test without initialization
+   devcontainer features test -f devbox -i devbox_without_init .
+   ```
+
+#### Test Scenarios Configuration
+
+The test scenarios are defined in `test/devbox/scenarios.json`:
+```json
+{
+    "devbox_without_init": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+        "features": {
+            "devbox": {
+                "initRepo": false
+            }
+        }
+    },
+    "devbox_with_init": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+        "features": {
+            "devbox": {
+                "initRepo": true
+            }
+        }
+    }
+}
 ```
+
+#### Test Configuration
+
+The test suite uses a sample `devbox.json` in the `test/devbox` directory:
+
+```json
+{
+    "packages": [
+        "hello",
+        "cowsay"
+    ]
+}
+```
+
+This configuration is used to verify initialization behavior and package installation.
 
 ## Publishing
 
