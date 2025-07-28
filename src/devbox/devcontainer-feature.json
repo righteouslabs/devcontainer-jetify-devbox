@@ -1,0 +1,9 @@
+{
+    "name": "Devbox",
+    "id": "jetify-devbox",
+    "version": "1.0.0",
+    "description": "Instant, easy, and predictable development environments using Jetify Devbox",
+    "dependsOn": {
+        "ghcr.io/devcontainers/features/nix": {}
+    }
+}
