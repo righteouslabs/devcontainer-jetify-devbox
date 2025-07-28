@@ -5,5 +5,12 @@
     "description": "Instant, easy, and predictable development environments using Jetify Devbox",
     "dependsOn": {
         "ghcr.io/devcontainers/features/nix": {}
+    },
+    "options": {
+        "initRepo": {
+            "type": "boolean",
+            "default": true,
+            "description": "Initialize the repository by running 'devbox update' from the root of the repository. This relies on 'devbox.json' file being present in the root of the repository."
+        }
     }
 }
