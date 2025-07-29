@@ -55,12 +55,8 @@ if [ -f "${WORKSPACE_DIR}/devbox.json" ]; then
     echo "Found devbox.json in ${WORKSPACE_DIR}, running devbox update..."
     cd "${WORKSPACE_DIR}"
     
-    # Run as the remote user if not root
-    if [ "${_REMOTE_USER}" != "root" ]; then
-        su ${_REMOTE_USER} -c 'devbox update'
-    else
-        devbox update
-    fi
+    # Run devbox update
+    devbox update
     
     # Also set up the shell environment for VS Code processes
     devbox shellenv --init-hook >> ~/.profile

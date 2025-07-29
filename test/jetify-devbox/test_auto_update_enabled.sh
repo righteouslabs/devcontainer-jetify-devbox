@@ -6,7 +6,7 @@ set -e
 
 source dev-container-features-test-lib
 
-# Create devbox.json to simulate the onCreateCommand
+# Create devbox.json before running the post-setup script
 cat > devbox.json << 'EOF'
 {
   "packages": [
@@ -21,6 +21,9 @@ cat > devbox.json << 'EOF'
   }
 }
 EOF
+
+# Run the post-setup script manually to test the auto-update functionality
+/usr/local/share/devbox-post-setup.sh
 
 # Check that the post-setup script was created
 check "post-setup script exists" test -f /usr/local/share/devbox-post-setup.sh

@@ -22,6 +22,9 @@ cat > devbox.json << 'EOF'
 }
 EOF
 
+# Run the post-setup script to process the devbox.json
+/usr/local/share/devbox-post-setup.sh
+
 # Check devbox was installed
 check "devbox installed" devbox version
 
