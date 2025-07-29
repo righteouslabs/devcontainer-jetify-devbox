@@ -3,6 +3,7 @@
     "id": "jetify-devbox",
     "version": "1.0.0",
     "description": "Instant, easy, and predictable development environments using Jetify Devbox",
+    "documentationURL": "https://github.com/righteouslabs/devcontainer-jetify-devbox",
     "dependsOn": {
         "ghcr.io/devcontainers/features/nix": {}
     },
@@ -13,8 +14,11 @@
             "description": "Automatically run 'devbox update' after container creation"
         }
     },
-    "onCreateCommand": "/usr/local/share/devbox-post-setup.sh",
+    "installsAfter": [
+        "ghcr.io/devcontainers/features/common-utils"
+    ],
     "containerEnv": {
         "DEVBOX_FEATURE_INSTALLED": "true"
-    }
+    },
+    "onCreateCommand": "/usr/local/share/devbox-post-setup.sh"
 }

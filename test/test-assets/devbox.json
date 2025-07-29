@@ -1,0 +1,12 @@
+{
+  "packages": [
+    "python@3.11",
+    "nodejs@18",
+    "jq@latest"
+  ],
+  "shell": {
+    "init_hook": [
+      "echo 'Welcome to Devbox!'"
+    ]
+  }
+}

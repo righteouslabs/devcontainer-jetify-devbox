@@ -7,8 +7,8 @@
   "env": {},
   "shell": {
     "init_hook": [
-      "echo 'Welcome to Devbox!'",
+      "echo 'Welcome to Devbox!'"
     ],
-    "scripts": {},
-  },
+    "scripts": {}
+  }
 }

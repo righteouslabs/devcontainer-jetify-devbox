@@ -1,0 +1,57 @@
+{
+    "auto_update_enabled": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+        "features": {
+            "jetify-devbox": {
+                "autoUpdate": true
+            }
+        },
+        "mounts": [
+            "source=${PWD}/test-assets,target=/tmp/test-assets,type=bind"
+        ],
+        "onCreateCommand": "cp /tmp/test-assets/devbox.json ."
+    },
+    "auto_update_disabled": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+        "features": {
+            "jetify-devbox": {
+                "autoUpdate": false
+            }
+        }
+    },
+    "test_vscode_integration": {
+        "image": "mcr.microsoft.com/devcontainers/base:debian",
+        "features": {
+            "jetify-devbox": {
+                "autoUpdate": true
+            }
+        },
+        "mounts": [
+            "source=${PWD}/test-assets,target=/tmp/test-assets,type=bind"
+        ],
+        "onCreateCommand": "cp /tmp/test-assets/devbox.json .",
+        "customizations": {
+            "vscode": {
+                "settings": {
+                    "terminal.integrated.defaultProfile.linux": "bash"
+                }
+            }
+        }
+    },
+    "test_with_user_oncreate": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+        "features": {
+            "jetify-devbox": {
+                "autoUpdate": true
+            }
+        },
+        "onCreateCommand": "echo 'User onCreate ran after feature' > /tmp/user-oncreate.log"
+    },
+    "test_different_base_images": {
+        "image": "ubuntu:jammy",
+        "features": {
+            "ghcr.io/devcontainers/features/common-utils": {},
+            "jetify-devbox": {}
+        }
+    }
+}
