@@ -1,7 +1,7 @@
+#!/bin/bash
 # ==================================================
 # test/jetify-devbox/test.sh - Basic functionality test
 # ==================================================
-#!/bin/bash
 set -e
 
 # Import test library
@@ -18,7 +18,7 @@ check "devbox in PATH" which devbox
 check "can initialize devbox" bash -c "devbox init && test -f devbox.json"
 
 # Test that devbox shell works
-check "devbox shell works" devbox shell -- echo 'Shell test passed'
+check "devbox shell works" bash -c "echo 'echo Shell test passed' | devbox shell"
 
 # Cleanup
 rm -f devbox.json devbox.lock

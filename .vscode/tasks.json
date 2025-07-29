@@ -9,11 +9,57 @@
 				"features",
 				"test",
 				"--features",
-				"devbox",
-				"${localWorkspaceFolder}",
+				"jetify-devbox",
+				"${workspaceFolder}"
 			],
 			"group": "test",
 			"problemMatcher": []
+		},
+		{
+			"type": "shell",
+			"label": "Run GitHub Actions Locally (act)",
+			"command": "act",
+			"args": [
+				"--container-architecture",
+				"linux/amd64"
+			],
+			"group": "test",
+			"problemMatcher": [],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": true,
+				"clear": false
+			}
+		},
+		{
+			"type": "shell",
+			"label": "Run GitHub Actions - Test Scenarios (act)",
+			"command": "act",
+			"args": [
+				"-j",
+				"test-scenarios",
+				"--container-architecture",
+				"linux/amd64"
+			],
+			"group": "test",
+			"problemMatcher": [],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": true,
+				"clear": false
+			}
 		}
 	]
 }

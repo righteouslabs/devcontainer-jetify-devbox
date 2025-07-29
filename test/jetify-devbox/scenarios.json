@@ -1,17 +1,13 @@
 {
-    "auto_update_enabled": {
+    "test_auto_update_enabled": {
         "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
         "features": {
             "jetify-devbox": {
                 "autoUpdate": true
             }
-        },
-        "mounts": [
-            "source=${PWD}/test-assets,target=/tmp/test-assets,type=bind"
-        ],
-        "onCreateCommand": "cp /tmp/test-assets/devbox.json ."
+        }
     },
-    "auto_update_disabled": {
+    "test_auto_update_disabled": {
         "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
         "features": {
             "jetify-devbox": {
@@ -26,10 +22,6 @@
                 "autoUpdate": true
             }
         },
-        "mounts": [
-            "source=${PWD}/test-assets,target=/tmp/test-assets,type=bind"
-        ],
-        "onCreateCommand": "cp /tmp/test-assets/devbox.json .",
         "customizations": {
             "vscode": {
                 "settings": {

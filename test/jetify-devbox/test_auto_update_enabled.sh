@@ -6,6 +6,22 @@ set -e
 
 source dev-container-features-test-lib
 
+# Create devbox.json to simulate the onCreateCommand
+cat > devbox.json << 'EOF'
+{
+  "packages": [
+    "python@3.11",
+    "nodejs@18",
+    "jq@latest"
+  ],
+  "shell": {
+    "init_hook": [
+      "echo 'Welcome to Devbox!'"
+    ]
+  }
+}
+EOF
+
 # Check that the post-setup script was created
 check "post-setup script exists" test -f /usr/local/share/devbox-post-setup.sh
 
