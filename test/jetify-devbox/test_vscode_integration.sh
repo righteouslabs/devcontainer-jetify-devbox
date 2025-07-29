@@ -44,6 +44,6 @@ check "devbox available in new bash" bash -c 'which devbox'
 check "DEVBOX_FEATURE_INSTALLED set" test "${DEVBOX_FEATURE_INSTALLED}" = "true"
 
 # Test that we can run commands in devbox shell
-check "can run in devbox shell" devbox shell -- echo "test"
+check "can run in devbox shell" devbox run -- echo "test"
 
 reportResults
