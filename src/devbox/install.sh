@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Stop the script on error
+set -e
+
 # Reference: https://github.com/dlouwers/devcontainer-features/blob/main/src/devbox/install.sh
 
 # Add Nix channel for devbox
@@ -21,18 +24,37 @@ fi
 
 echo "devbox installed successfully."
 
-# Initialize repo if requested
-if [ "${INITREPO}" = "true" ]; then
-    echo "Initializing repository with devbox update..."
+# Create post-setup script for devbox update
+cat << 'EOF' > /usr/local/share/devbox-post-setup.sh
+#!/bin/bash
+set -e
+
+# Log output for debugging
+exec 1> >(tee -a /tmp/devbox-setup.log)
+exec 2>&1
+
+echo "Running Devbox post-installation setup..."
+
+# Check if devbox.json exists in workspace
+if [ -f "${WORKSPACE_FOLDER:-/workspaces/*}/devbox.json" ]; then
+    echo "Found devbox.json, running devbox update..."
+    cd "${WORKSPACE_FOLDER:-/workspaces/*}"
     
-    # Change to the workspace root directory
-    cd "${CONTAINERWORKSPACEFOLDER}"
-    
-    if [ ! -f "devbox.json" ]; then
-        echo "Warning: devbox.json not found in repository root. Skipping initialization."
-        exit 0
+    # Run as the remote user if not root
+    if [ "${_REMOTE_USER}" != "root" ]; then
+        su ${_REMOTE_USER} -c 'devbox update'
+    else
+        devbox update
     fi
     
-    echo "Running devbox update in $(pwd)..."
-    devbox update
+    # Also set up the shell environment for VS Code processes
+    devbox shellenv --init-hook >> ~/.profile
+else
+    echo "No devbox.json found, skipping devbox update"
 fi
+
+echo "Devbox setup completed successfully"
+EOF
+
+# Make the post-setup script executable
+chmod +x /usr/local/share/devbox-post-setup.sh

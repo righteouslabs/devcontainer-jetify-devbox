@@ -1,0 +1,19 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "shell",
+			"label": "Run Devbox Feature Tests",
+			"command": "devcontainer",
+			"args": [
+				"features",
+				"test",
+				"--features",
+				"devbox",
+				"${localWorkspaceFolder}",
+			],
+			"group": "test",
+			"problemMatcher": []
+		}
+	]
+}

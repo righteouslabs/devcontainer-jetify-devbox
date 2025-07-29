@@ -1,9 +1,0 @@
-{
-    "name": "Test Devbox Feature",
-    "build": {
-        "dockerfile": "../Dockerfile"
-    },
-    "features": {
-        "./src/devbox": {}
-    }
-}
