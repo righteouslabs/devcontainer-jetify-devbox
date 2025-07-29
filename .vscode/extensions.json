@@ -6,7 +6,8 @@
 	"recommendations": [
 		"github.copilot",
 		"github.copilot-chat",
-		"anthropic.claude-code"
+		"anthropic.claude-code",
+		"mutantdino.resourcemonitor"
 	],
 	// List of extensions recommended by VS Code that should not be recommended for users of this workspace.
 	"unwantedRecommendations": [

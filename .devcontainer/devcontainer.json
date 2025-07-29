@@ -16,7 +16,8 @@
                 "mads-hartmann.bash-ide-vscode",
                 "GitHub.copilot",
                 "GitHub.copilot-chat",
-                "Anthropic.claude-code"
+                "Anthropic.claude-code",
+                "mutantdino.resourcemonitor"
             ]
         }
     },
