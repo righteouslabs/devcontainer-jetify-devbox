@@ -16,7 +16,7 @@
         }
     },
     "test_vscode_integration": {
-        "image": "mcr.microsoft.com/devcontainers/base:debian",
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
         "features": {
             "jetify-devbox": {
                 "autoUpdate": true
