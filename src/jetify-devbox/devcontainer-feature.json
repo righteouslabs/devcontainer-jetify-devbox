@@ -1,7 +1,7 @@
 {
     "name": "Devbox",
     "id": "jetify-devbox",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Instant, easy, and predictable development environments using Jetify Devbox",
     "documentationURL": "https://github.com/righteouslabs/devcontainer-jetify-devbox",
     "dependsOn": {

@@ -47,10 +47,13 @@ exec 2>&1
 
 echo "Running Devbox post-installation setup..."
 
+# Use the current directory as the default workspace folder
+WORKSPACE_DIR="${WORKSPACE_FOLDER:-$(pwd)}"
+
 # Check if devbox.json exists in workspace
-if [ -f "${WORKSPACE_FOLDER:-/workspaces/*}/devbox.json" ]; then
-    echo "Found devbox.json, running devbox update..."
-    cd "${WORKSPACE_FOLDER:-/workspaces/*}"
+if [ -f "${WORKSPACE_DIR}/devbox.json" ]; then
+    echo "Found devbox.json in ${WORKSPACE_DIR}, running devbox update..."
+    cd "${WORKSPACE_DIR}"
     
     # Run as the remote user if not root
     if [ "${_REMOTE_USER}" != "root" ]; then
@@ -78,11 +81,10 @@ set -e
 echo "Running manual Devbox setup..."
 
 # Check if devbox.json exists in workspace
-if [ -f "${WORKSPACE_FOLDER:-/workspaces/*}/devbox.json" ]; then
+if [ -f "devbox.json" ]; then
     echo "Found devbox.json, running devbox update..."
-    cd "${WORKSPACE_FOLDER:-/workspaces/*}"
     devbox update
-    
+
     # Also set up the shell environment for VS Code processes
     devbox shellenv --init-hook >> ~/.profile
     echo "Devbox setup completed successfully"
