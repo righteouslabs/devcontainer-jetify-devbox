@@ -17,6 +17,22 @@
 		},
 		{
 			"type": "shell",
+			"label": "Run Devbox Feature Tests (Ubuntu)",
+			"command": "devcontainer",
+			"args": [
+				"features",
+				"test",
+				"--features",
+				"jetify-devbox",
+				"--base-image",
+				"ubuntu:latest",
+				"${workspaceFolder}"
+			],
+			"group": "test",
+			"problemMatcher": []
+		},
+		{
+			"type": "shell",
 			"label": "Run GitHub Actions Locally (act)",
 			"command": "act",
 			"args": [

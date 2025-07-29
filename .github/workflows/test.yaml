@@ -15,7 +15,8 @@ jobs:
         features:
           - jetify-devbox  # Changed from 'devbox' to match the feature ID
         baseImage:
-          - alpine:latest
+          # Note: Alpine excluded due to Nix feature compatibility issues
+          # (install.sh not found - Alpine uses /bin/ash instead of /bin/sh)
           - debian:latest
           - ubuntu:latest
           - mcr.microsoft.com/devcontainers/base:ubuntu
