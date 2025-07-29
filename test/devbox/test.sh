@@ -1,16 +1,25 @@
 #!/bin/bash
-
-# This test file will be run in a container with the feature installed
 set -e
 
-# Feature should have installed devbox
-if ! command -v devbox &> /dev/null; then
-    echo "devbox command not found"
-    exit 1
-fi
+# Import test library
+source dev-container-features-test-lib
 
-# Check if devbox is working
-devbox version
+# Feature-specific tests
+check "devbox installed" devbox version
+check "nix available" nix --version
 
-# Success
-echo "devbox is working correctly"
+# Test workspace integration
+check "can run devbox update" bash -c "touch devbox.json && devbox update"
+check "devbox shell works" devbox shell -- echo 'Shell test passed'
+
+# Test VS Code integration
+check "environment persisted to profile" grep -q "devbox shellenv" ~/.profile || echo "Profile updated"
+
+# Test package management
+check "can add package" devbox add ripgrep@latest
+check "package available" devbox shell -- which rg
+
+# Cleanup
+rm -f devbox.json devbox.lock
+
+reportResults

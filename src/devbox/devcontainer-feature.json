@@ -7,13 +7,13 @@
         "ghcr.io/devcontainers/features/nix": {}
     },
     "options": {
-        "initRepo": {
+        "autoUpdate": {
             "type": "boolean",
             "default": true,
-            "description": "Initialize the repository by running 'devbox update' from the root of the repository. This relies on 'devbox.json' file being present in the root of the repository."
+            "description": "Automatically run 'devbox update' after container creation"
         }
     },
-    "postCreateCommand": "/usr/local/share/devbox-post-setup.sh",
+    "onCreateCommand": "/usr/local/share/devbox-post-setup.sh",
     "containerEnv": {
         "DEVBOX_FEATURE_INSTALLED": "true"
     }
