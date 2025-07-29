@@ -1,0 +1,20 @@
+{
+    "name": "Devbox",
+    "id": "jetify-devbox",
+    "version": "1.0.0",
+    "description": "Instant, easy, and predictable development environments using Jetify Devbox",
+    "dependsOn": {
+        "ghcr.io/devcontainers/features/nix": {}
+    },
+    "options": {
+        "autoUpdate": {
+            "type": "boolean",
+            "default": true,
+            "description": "Automatically run 'devbox update' after container creation"
+        }
+    },
+    "onCreateCommand": "/usr/local/share/devbox-post-setup.sh",
+    "containerEnv": {
+        "DEVBOX_FEATURE_INSTALLED": "true"
+    }
+}
